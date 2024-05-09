@@ -1,0 +1,90 @@
+﻿@model InventoryManagementSystem.Models.Order
+
+@{
+    ViewData["Title"] = "Place Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .form-container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+        color: #333;
+    }
+
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: #fff;
+        color: #333;
+    }
+
+        .form-control:focus {
+            border-color: #666;
+        }
+
+    .btn-primary {
+        border-radius: 5px;
+        border: none;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .btn-secondary {
+        border-radius: 5px;
+        border: none;
+        padding: 10px 20px;
+        background-color: #6c757d;
+        color: #fff;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+</style>
+
+<div class="container">
+    <div class="form-container">
+        <h1>Place Order</h1>
+
+        <form asp-action="PlaceOrder" method="post">
+            <div class="form-group">
+                <label asp-for="ProductId" class="control-label">Select Product</label>
+                <select asp-for="ProductId" class="form-control" asp-items="ViewBag.ProductList" required>
+                    <option value="">-- Select Product --</option>
+                </select>
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label">Quantity</label>
+                <input asp-for="Quantity" class="form-control" type="number" min="1" required>
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Place Order</button>
+        </form>
+
+        <div class="text-center mt-4">
+            <a href="@Url.Action("Index", "Order")" class="btn btn-secondary">View Placed Orders</a>
+        </div>
+    </div>
+</div>

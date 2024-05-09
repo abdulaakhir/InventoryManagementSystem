@@ -1,0 +1,46 @@
+﻿@model IEnumerable<InventoryManagementSystem.Models.Sale>
+
+@{
+    ViewData["Title"] = "Sales Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="display-4 text-center mb-5">Sales Report</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="card-title">Sales Overview</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Sale ID</th>
+                                    <th>Order ID</th>
+                                    <th>Date Time</th>
+                                    <th>Total Bill (Rs)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var sale in Model)
+                                {
+                                    <tr>
+                                        <td>@sale.SaleId</td>
+                                        <td>@sale.OrderId</td>
+                                        <td>@sale.SaleDate.ToString("MM/dd/yyyy HH:mm:ss")</td>
+                                        <td>Rs. @sale.TotalAmount</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

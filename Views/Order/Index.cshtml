@@ -1,0 +1,83 @@
+﻿@model IEnumerable<InventoryManagementSystem.Models.Order>
+
+@{
+    ViewData["Title"] = "Orders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Orders</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Order Date</th>
+            <th>Status</th>
+            <th></th> <!-- New column for Pay button -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.OrderId</td>
+                <td>@order.ProductId</td>
+                <td>@(order.Product?.Name ?? "Unknown")</td>
+
+                <td>@order.Quantity</td>
+                <td>@order.OrderDate</td>
+                <td>
+                    @if (order.Status == "Pending")
+                    {
+                        <span class="badge bg-warning text-dark">@order.Status</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-success">@order.Status</span>
+                    }
+                </td>
+                <td>
+                    @if (order.Status == "Pending")
+                    {
+                        <button class="btn btn-success btn-pay" data-order-id="@order.OrderId">Pay</button>
+                    }
+                </td>
+
+                <td>
+                    <div class="btn-group" role="group" aria-label="Order Actions">
+
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@order.OrderId">Delete</a>
+
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".btn-pay").click(function () {
+                var orderId = $(this).data("order-id");
+                $.ajax({
+                    url: "/Order/PayOrder",
+                    type: "POST",
+                    data: { orderId: orderId },
+                    success: function () {
+                        // Update status to Successful
+                        $(".btn-pay[data-order-id='" + orderId + "']").closest("tr").find(".badge").removeClass("bg-warning").addClass("bg-success").text("Successful");
+                        // Hide the Pay button
+                        $(".btn-pay[data-order-id='" + orderId + "']").hide();
+                    },
+                    error: function () {
+                        alert("An error occurred while processing the request.");
+                    }
+                });
+            });
+        });
+    </script>
+}

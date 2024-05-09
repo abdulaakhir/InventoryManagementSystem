@@ -1,0 +1,80 @@
+﻿@model InventoryManagementSystem.Models.Sale
+
+@{
+    ViewData["Title"] = "Generate Sales Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .gradient-bg {
+        background: linear-gradient(to right, #ff9966, #ff5e62);
+        color: white;
+    }
+
+    .card {
+        border-radius: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        border-radius: 20px 20px 0 0;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        background: linear-gradient(to right, #ff9966, #ff5e62);
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background: linear-gradient(to right, #ff5e62, #ff9966);
+        }
+
+    .btn-secondary {
+        background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
+        border: none;
+    }
+
+        .btn-secondary:hover {
+            background: linear-gradient(to right, #ffaf7b, #d76d77, #3a1c71);
+        }
+</style>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header gradient-bg">
+                    <h3 class="card-title">Generate Sales Report</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="GenerateReport" method="post">
+                        <div class="form-group">
+                            <label for="OrderId" class="control-label">Enter Order ID:</label>
+                            <input type="text" id="OrderId" name="OrderId" class="form-control" required>
+                            <span asp-validation-for="OrderId" class="text-danger"></span>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Generate Report</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <a href="@Url.Action("SalesReport", "Sales")" class="btn btn-secondary">View Sales Data</a>
+        </div>
+    </div>
+</div>

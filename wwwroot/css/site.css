@@ -1,0 +1,76 @@
+/* Responsive Typography */
+html {
+    font-size: 16px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+/* Button Focus Styles */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* Page Layout */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px; /* Adjust as needed */
+    text-align: center;
+    background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+    font-family: Arial, sans-serif; /* Change font family */
+}
+
+/* Advanced Styling */
+/* Add custom styles for specific elements or components */
+/* Example: Enhance Navbar */
+.navbar {
+    background-color: #5c6ac4; /* Purple */
+    color: #ffffff; /* White */
+    border-radius: 0; /* Remove border radius */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.navbar-brand {
+    font-weight: bold; /* Make the brand text bold */
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff; /* White */
+    transition: color 0.3s ease; /* Smooth transition */
+}
+
+    .navbar-nav .nav-link:hover {
+        color: #f8f9fa; /* Light Gray */
+    }
+
+/* Footer Styles */
+.footer {
+    background-color: #8C91F2; /* Dark Gray */
+    color: #F5F5F5; /* White */
+    padding: 10px 0; /* Reduce padding */
+    text-align: center; /* Center align text */
+    position: fixed; /* Position fixed */
+    width: 100%; /* Full width */
+    bottom: 0; /* Stick to the bottom */
+}
+
+    .footer a {
+        color: #F5F5F5; /* White */
+        transition: color 0.3s ease; /* Smooth transition */
+        text-decoration: none; /* Remove underline */
+    }
+
+        .footer a:hover {
+            color: #F5F5F5; /* Light Gray */
+        }
